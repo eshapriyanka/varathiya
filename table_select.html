@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Pollution Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+        }
+
+        table {
+            width: 60%;
+            margin-left: 100px;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select {
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        .main_page_selector {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main_page_selector">
+        <label for="date">Select Date:</label>
+        <select id="date" onchange="updateTable()">
+            <option value="last-year">2023</option>
+            <option value="year">2024</option>
+        </select>
+
+        <label for="pollutant">Select Pollutant:</label>
+        <select id="pollutant" onchange="updateTable()">
+            <option value="CO">CO</option>
+            <option value="PM2.5">PM2.5</option>
+            <option value="NO2">NO2</option>
+        </select>
+    </div>
+
+    <table id="pollutionTable">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Water_body</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Content will be dynamically updated -->
+        </tbody>
+    </table>
+
+    <script>
+        const data = {
+            'last-year': {
+                'CO': [
+                    { Sno: 1, Water_body: 'Yamuna', Level: 22.57 },
+                    { Sno: 2, Water_body: 'Ganga', Level: 19.23 }
+                ],
+                'PM2.5': [
+                    { Sno: 1, Water_body: 'Yamuna', Level: 45.67 },
+                    { Sno: 2, Water_body: 'Ganga', Level: 50.11 }
+                ],
+                'NO2': [
+                    { Sno: 1, Water_body: 'Yamuna', Level: 33.45 },
+                    { Sno: 2, Water_body: 'Ganga', Level: 29.12 }
+                ]
+            },
+            'year': {
+                'CO': [
+                    { Sno: 1, Water_body: 'Yamuna', Level: 21.89 },
+                    { Sno: 2, Water_body: 'Ganga', Level: 20.78 }
+                ],
+                'PM2.5': [
+                    { Sno: 1, Water_body: 'Yamuna', Level: 48.76 },
+                    { Sno: 2, Water_body: 'Ganga', Level: 49.22 }
+                ],
+                'NO2': [
+                    { Sno: 1, Water_body: 'Yamuna', Level: 32.54 },
+                    { Sno: 2, Water_body: 'Ganga', Level: 30.11 }
+                ]
+            },
+        };
+
+        function updateTable() {
+            const selectedDate = document.getElementById('date').value;
+            const selectedPollutant = document.getElementById('pollutant').value;
+            const tableBody = document.getElementById('pollutionTable').querySelector('tbody');
+
+            // Clear existing table rows
+            tableBody.innerHTML = '';
+
+            // Get relevant data based on selections
+            const selectedData = data[selectedDate][selectedPollutant];
+
+            // Populate the table with new data
+            selectedData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${item.Sno}</td><td>${item.Water_body}</td><td>${item.Level}</td>`;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Initial load
+        updateTable();
+    </script>
+
+</body>
+</html>

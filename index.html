@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varathiya</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+</head>
+<body>
+    
+    <div class="navbar">
+        <div class="logo" style="background-image: url('logo.jpg');"></div>
+        <div class="options">
+            <a href="index.html">Home</a>
+            <a href="analysis.html">Analysis</a>
+            <a href="wqi.html">WQI</a>
+            <a href="statistics.html">Statistics</a>
+        </div>
+        <vr style="color: rgb(25, 155, 247);">
+    </div>
+
+    <div class="herosec"></div>
+    <div class = "main_page_content">
+        <p>
+            Water bodies are the lifeblood of our ecosystems, yet pollution from industrial waste, agricultural runoff, and sewage has severely impacted their health over the years. As we face declining biodiversity and increasing waterborne diseases, it’s crucial to maintain a vigilant watch over these vital resources. Introducing Varathiya, our solution focuses on continuous monitoring of water quality. By providing timely insights, we aim to foster a proactive approach to safeguarding our precious water bodies for a sustainable tomorrow.
+        </p>
+    </div>
+    <div id="container"></div>
+    <div class="main_page_selector">
+        <label for="date" style="margin : 30px auto 10px 70px">Select Date:</label>
+        <select id="date" onchange="updateTable()">
+            <option value="last-year">2023</option>
+            <option value="year">2024</option>
+        </select>
+        <label for="pollutant">Select Pollutant:</label>
+        <select id="pollutant" onchange="updateTable()">
+            <option value="PH">PH</option>
+            <option value="TURBIDITY">TURBIDITY</option>
+        </select>
+    </div>
+
+    <table id="pollutionTable">
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th>Water body</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Content will be dynamically updated -->
+        </tbody>
+    </table>
+
+
+    <section>
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave4"></div>
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
